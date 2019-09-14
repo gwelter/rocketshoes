@@ -1,7 +1,17 @@
-import React from "react";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
+import Routes from './routes';
+import GlobalStyle from './styles/global';
 
 function App() {
-  return <div>Hello Redux</div>;
+  return (
+    <BrowserRouter>
+      {/*<Header />*/}
+      <Routes />
+      <GlobalStyle />
+    </BrowserRouter>
+  );
 }
 
 export default App;
