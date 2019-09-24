@@ -16,6 +16,21 @@ export default function cart(state = [], action) {
       });
     case '@cart/REMOVE':
       return state.filter(product => product.id !== action.id);
+    case '@cart/UPDATE_AMOUNT': {
+      if (action.amount <= 0) return state;
+
+      return produce(state, draft => {
+        const productIndex = draft.findIndex(p => p.id === action.id);
+        if (productIndex >= 0) {
+          draft[productIndex].amount = Number(action.amount);
+        } else {
+          draft.push({
+            ...action.product,
+            amount: 1,
+          });
+        }
+      });
+    }
     default:
       return state;
   }
